@@ -5,7 +5,8 @@
   "main": "app/main/index.js",
   "scripts": {
     "dev": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "build:win": "electron-builder --win --x64"
   },
   "keywords": [],
   "author": "",
@@ -56,6 +57,19 @@
         }
       ],
       "iconSize": 128
+    },
+    "win": {
+      "icon": "resources/icon.ico",
+      "target": [ "nsis", "zip"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "language": "2052",
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    },
+    "squirrelWindows": {
+
     }
   }
 }
