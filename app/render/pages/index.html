@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>直播监测软件</title>
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+  <h2>配置信息</h2>
+  <label for="urls">监测地址</label><br>
+  <textarea id="urls" cols="30" rows="10" disabled placeholder="输入需要监测的url，用换行符隔开"></textarea><br>
+  <label for="time">监测间隔时长（单位：min）</label><br>
+  <input id="time" type="number" placeholder="每次访问地址去截图的时间间隔"/><br>
+  <label for="wait">等待时长（单位：ms）</label><br>
+  <input id="wait" type="number" placeholder="访问地址后等待的时长，与网速有关" value="1000"/><br>
+  <br>
+  <br>
+  <button id="start">开始监测</button><br>
+  <div id="log"></div>
+</body>
+
+<script>
+  require('../js/index.js')
+</script>
+</html>

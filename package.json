@@ -1,0 +1,61 @@
+{
+  "name": "ele_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/main/index.js",
+  "scripts": {
+    "dev": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cron": "^1.8.2",
+    "fs-extra": "^10.0.0",
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "electron-builder": "^22.10.5",
+    "electron": "^13.0.1"
+  },
+  "build": {
+    "appId": "com.electron.eleServer",
+    "productName": "eleServer",
+    "files": "app",
+    "asar": false,
+    "extraFiles": [],
+    "directories": {
+      "buildResources": "resource",
+      "output": "release"
+    },
+    "copyright": "Copyright © 2021.05",
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "resources/app-icon/icon.icns"
+    },
+    "dmg": {
+      "background": "resources/install-background.png",
+      "window": {
+        "width": 540,
+        "height": 380
+      },
+      "contents": [
+        {
+          "x": 410,
+          "y": 180,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 180,
+          "type": "file"
+        }
+      ],
+      "iconSize": 128
+    }
+  }
+}
