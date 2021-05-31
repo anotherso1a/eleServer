@@ -105,3 +105,4 @@ dist
 
 .vscode/
 release/
+.DS_Store
