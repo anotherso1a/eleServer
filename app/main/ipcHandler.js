@@ -1,4 +1,4 @@
-const { ipcMain, Notification } = require("electron")
+const { ipcMain, Notification, dialog } = require("electron")
 const { start, stop } = require('../watcher/index')
 
 const watcherHandler = () => {
@@ -45,7 +45,25 @@ const notifacationHandler = () => {
   })
 }
 
+const directoryHandler = () => {
+  ipcMain.on('open-directory-dialog', function (event, p) {
+    dialog.showOpenDialog({
+      properties: ['openDirectory']
+    }).then(function ({
+      canceled,
+      filePaths
+    }) {
+      if (filePaths) {// 如果有选中
+        // 发送选择的对象给子进程
+        event.sender.send('selectedItem', filePaths)
+      }
+      event.sender.send('selectedItem', canceled)
+    })
+  })
+}
+
 module.exports = {
   watcherHandler,
+  directoryHandler,
   notifacationHandler
 }

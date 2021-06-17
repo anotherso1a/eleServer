@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require('electron')
-const { watcherHandler, notifacationHandler } = require('./ipcHandler')
+const { watcherHandler, notifacationHandler, directoryHandler } = require('./ipcHandler')
 
 const path = require('path')
 let mainWindow
@@ -9,7 +9,7 @@ function createMainWindow() {
 
   mainWindow = new BrowserWindow({
     width: 400,
-    height: 660,
+    height: 780,
     // opacity: 0.7,
     webPreferences: {
       nodeIntegration: true, // 开启渲染进程可使用node模式
@@ -27,5 +27,6 @@ function createMainWindow() {
 app.whenReady().then(() => {
   watcherHandler() // 添加监控ipc
   notifacationHandler() // 添加消息通知ipc
+  directoryHandler() // 选择文件夹
   createMainWindow()
 })

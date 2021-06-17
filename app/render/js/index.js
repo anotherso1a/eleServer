@@ -13,20 +13,35 @@ window.addEventListener('DOMContentLoaded', () => {
   $('#wait').value = config.wait
   // event binding
   let isRunning = false
+  let savingPath = ''
   $("#start").addEventListener('click', function () {
+    if(!savingPath) return alert('请选择文件存储位置！')
     isRunning = !isRunning
     if (isRunning) {
       ipcRenderer.invoke('watchControl', {
         type: 'start',
         detail: {
+          savingPath,
           time: $('#time').value,
           wait: $('#wait').value
         }
       })
       this.innerText = '运行中...'
     } else {
-      ipcRenderer.invoke('watchControl', {type: 'stop'})
+      ipcRenderer.invoke('watchControl', { type: 'stop' })
       this.innerText = '开始监测'
     }
+  })
+  $("#open").addEventListener('click', function () {
+    ipcRenderer.once('selectedItem', (e, v) => {
+      if (v && v[0]) {
+        savingPath = v[0]
+        this.value = savingPath
+        console.log(v[0])
+      } else {
+        console.log('canceled')
+      }
+    })
+    ipcRenderer.send('open-directory-dialog')
   })
 })

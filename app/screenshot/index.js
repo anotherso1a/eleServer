@@ -1,7 +1,5 @@
 const { BrowserWindow } = require("electron")
 const fs = require('fs-extra')
-const sendLog = require("../watcher/sendLog")
-const moment = require('moment')
 
 const screenshot = async ({
   show = false,
